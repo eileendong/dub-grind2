@@ -4,12 +4,14 @@ from discord.ext import commands, tasks
 import asyncio
 #import openai  # Import OpenAI for API usage
 
+
 from husky import get_user_husky, user_huskies
 
 # Bot setup
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
+
 bot = commands.Bot(command_prefix="~", intents=intents)
 
 # OpenAI API Setup
@@ -133,8 +135,9 @@ async def daily_reset():
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user}')
+
     daily_reset.start()  # Start the daily reset loop
 
 # Run the bot
 bot.run('...')
-    
+
