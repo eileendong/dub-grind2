@@ -32,7 +32,7 @@ def summarize_file(file_path):
 
     # Define prompt
     prompt = ChatPromptTemplate.from_messages(
-        [("system", "Write a concise summary of the following:\n\n{context}")]
+        [("system", "Write a concise summary and an overarching takeaways section at the end of the following, such as topics to focus on. (do not include next steps):\n\n{context}")]
     )
 
     # Create chain
@@ -45,6 +45,6 @@ def summarize_file(file_path):
 
 # Example usage
 # if __name__ == "__main__":
-#     file_path = "test.pdf"
+#     file_path = "Lecture 7 Subqueries.pdf"
 #     summary = summarize_file(file_path)
 #     print(summary)
