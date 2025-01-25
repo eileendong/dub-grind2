@@ -1,8 +1,9 @@
 import os
 import PyPDF2
-from llamaindex import GPTSimpleVectorIndex, Document
 
-os.environ["OPENAI_API_KEY"] = "PLACE_HOLDER"
+from llama_index import GPTSimpleVectorIndex, Document
+
+os.environ["OPENAI_API_KEY"] = "..."
 
 
 def read_pdf(file_path):
@@ -16,7 +17,7 @@ def read_pdf(file_path):
 
 
 # Path to your PDF file
-pdf_path = "path_to_your_file.pdf"
+pdf_path = "test.pdf"
 
 # Extract text and create a document
 pdf_text = read_pdf(pdf_path)
