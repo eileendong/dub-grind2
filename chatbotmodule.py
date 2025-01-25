@@ -15,26 +15,26 @@ if not OPENAI_API_KEY:
 openai.api_key = OPENAI_API_KEY
 
 # Function to query OpenAI's GPT models
-# def chat_bot(prompt, model="gpt-4", temperature=0.7):
-#     try:
-#         response = openai.ChatCompletion.create(
-#             model=model,
-#             messages=[{"role": "user", "content": prompt}],
-#             temperature=temperature,
-#         )
-#         return response["choices"][0]["message"]["content"].strip()
-#     except Exception as e:
-#         return f"Error: {e}"
+def chat_bot(prompt, model="gpt-4", temperature=0.7):
+    try:
+        response = openai.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature,
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        return f"Error: {e}"
 
-# if __name__ == "__main__":
-#     print("Chatbot is ready! Type your questions or type 'exit' to quit.")
-#     while True:
-#         user_input = input("> ")
-#         if user_input.lower() in ["exit", "quit"]:
-#             print("Goodbye!")
-#             break
-#         response = chat_bot(user_input)
-#         print(response)
+if __name__ == "__main__":
+    print("Chatbot is ready! Type your questions or type 'exit' to quit.")
+    while True:
+        user_input = input("> ")
+        if user_input.lower() in ["exit", "quit"]:
+            print("Goodbye!")
+            break
+        response = chat_bot(user_input)
+        print(response)
 
 
 def generate_quiz(topic, num_questions, model="gpt-4", temperature=0.7):
@@ -48,14 +48,14 @@ def generate_quiz(topic, num_questions, model="gpt-4", temperature=0.7):
         )
 
         # Call the OpenAI API
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt}],
             temperature=temperature,
         )
 
         # Parse the response
-        content = response["choices"][0]["message"]["content"]
+        content = response.choices[0].message.content
         return content.strip()
     except Exception as e:
         return f"Error: {e}"
